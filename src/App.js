@@ -1,25 +1,41 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import SearchField from './SearchField'
+import City from './City'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    zips: [],
+  }
+  saveZips = (zips) => {
+    this.setState({
+      zips
+    })
+  }
+  render() {
+    const {zips} = this.state
+    console.log("state: ", zips)
+    return (
+      <div className="App">
+        <div className="App-header">
+          <h2>Zip Code Search</h2>
+        </div>
+        <SearchField saveZips = {(zips) => this.saveZips(zips)}/>
+        <div>
+        {zips.length === 0 
+        ? (<div className="list-zips">No Results</div>) 
+        : (<div className="list-zips">
+            {zips.map((zip, idx) => (
+              <ul>
+                <li key={idx}>
+                  <City zip={zip}/>
+                </li>
+              </ul>))}
+          </div>)}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
