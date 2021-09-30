@@ -13,9 +13,6 @@ class SearchField extends React.Component {
                     this.props.saveZips(zips)
             })
         }
-        // }else{
-        //     this.props.saveZips([])
-        // }
 
 
     }

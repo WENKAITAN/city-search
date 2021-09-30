@@ -28,7 +28,7 @@ class App extends Component {
             {zips.map((zip, idx) => (
               <ul>
                 <li key={idx}>
-                  <City zip={zip}/>
+                  <p>{zip}</p>
                 </li>
               </ul>))}
           </div>)}
