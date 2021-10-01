@@ -1,28 +1,22 @@
 import React, { Component} from "react"
 
 class City extends Component {
-    state = {
-        cities: []
-    }
-    componentDidMount(){
-        console.log(this.props.zip)
-        fetch(`http://ctp-zip-api.herokuapp.com/zip/${this.props.zip}`)
-        .then(res => res.json())
-        .then(cities => {
-            JSON.stringify(cities)
-            // console.log(cities[0])
-            this.setState({cities})
-        })
-    }
+
     render() {
-        console.log(this.state.cities)
-        return(
-            <div>
-                {this.state.cities.map(city => (
-                    <p>{city.State}</p>
-                ))}
-            </div>
-        )
+        return <div>
+        <h3>{this.props.state[0].state}</h3>
+        <ul style={{display: 'inline-block'}}>
+          {this.props.state.map(state => 
+            <li style={{border: 'solid 1px black'}}>
+              <p>Zip: {state.Zipcode}</p>
+              <p>City: {state.City}</p>
+            </li>
+          )}
+        </ul>
+      </div>
+
+      
+    
     }
 }
 
